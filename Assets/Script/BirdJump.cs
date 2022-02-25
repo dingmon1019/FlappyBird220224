@@ -7,6 +7,8 @@ public class BirdJump : MonoBehaviour
 {
     Rigidbody2D rb;
 
+    public GameObject upside;
+
     public float JumpPower;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,13 @@ public class BirdJump : MonoBehaviour
         {
             Score.bestscore = Score.score;
         }
-        SceneManager.LoadScene("GameOverScene");
+        if(other.gameObject == upside)
+        {
+
+        }
+        else
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 }
