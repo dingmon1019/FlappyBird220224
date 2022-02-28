@@ -7,7 +7,7 @@ public class MakePipe : MonoBehaviour
     public GameObject pipe;
 
     public float timeDiff;
-
+    public bool IsEat;
     float timer = 0;
     // Start is called before the first frame update
     void Start()
@@ -19,12 +19,30 @@ public class MakePipe : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer > timeDiff)
+        if (timer > timeDiff)
         {
-            GameObject newpipe = Instantiate(pipe);
-            newpipe.transform.position = new Vector3(6, Random.Range(-0.8f, 6.5f), 0);
-            timer = 0;
-            Destroy(newpipe, 10.0f);
+           if(Random.Range(0f,2f)>1.5)
+            {
+                GameObject newpipe = Instantiate(pipe);
+                newpipe.transform.position = new Vector3(Random.Range(15, 18), Random.Range(-3f, 5.5f), 0);
+                timer = 0;
+                /*
+                if ()
+                {
+                    Destroy(newpipe.gameObject);
+                }
+                else
+                {
+                    Destroy(newpipe.gameObject, 10.0f);
+                }*/
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Eagle")
+        {
+            IsEat = true;
         }
     }
 }
