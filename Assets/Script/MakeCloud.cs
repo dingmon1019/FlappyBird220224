@@ -22,7 +22,7 @@ public class MakeCloud : MonoBehaviour
         if(timer > timeDiff)
         {
             GameObject newpipe = Instantiate(pipe);
-            newpipe.transform.position = new Vector3(10, Random.Range(-0.8f, 6.5f), 0);
+            newpipe.transform.position = new Vector3(16, Random.Range(-0.8f, 6.5f), 0);
             timer = 0;
             Destroy(newpipe, 18.0f);
         }

@@ -42,11 +42,13 @@ public class BirdJump : MonoBehaviour
         {
             if (Input.GetMouseButton(1))
             {
+                rb.gravityScale = 0;
                 MousePos = Input.mousePosition;
                 MousePos = camera.ScreenToWorldPoint(MousePos);
                 transform.position = new Vector3(0, MousePos.y, 0);
 
             }
+            else { rb.gravityScale = 1; }
             
         }
      
