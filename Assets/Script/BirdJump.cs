@@ -24,7 +24,7 @@ public class BirdJump : MonoBehaviour
     {
         animator.SetBool("IsItem", IsItem);
         Timer += Time.deltaTime;
-        if (IsItem && Timer > 5)
+        if (IsItem && Timer > 10)
         {
            
             IsItem = false;
@@ -45,7 +45,7 @@ public class BirdJump : MonoBehaviour
                 rb.gravityScale = 0;
                 MousePos = Input.mousePosition;
                 MousePos = camera.ScreenToWorldPoint(MousePos);
-                transform.position = new Vector3(0, MousePos.y, 0);
+                transform.position = new Vector3(-6, MousePos.y, 0);
 
             }
             else { rb.gravityScale = 1; }
@@ -60,21 +60,38 @@ public class BirdJump : MonoBehaviour
         {
             Score.bestscore = Score.score;
         }
-        if(other.gameObject == upside)
+        else if(other.gameObject == upside)
         {
 
+        }
+        else if(Life.life == 0)
+        {
+            SceneManager.LoadScene("GameOverScene");
         }
         else
         {
             if (IsItem)
             {
-         
+                if(other.collider.CompareTag ("Fish"))
+                {
+                    Life.life++;
+                    Destroy(other.gameObject);
+                }
+            }
+            else if(other.collider.CompareTag ("Fish"))
+            {
+                Life.life++;
+                Destroy(other.gameObject);
+            }
+            else if(other.collider.CompareTag ("Shark"))
+            {
+                Life.life--;
+                Destroy(other.gameObject);
             }
             else
             {
-                SceneManager.LoadScene("GameOverScene");
+                Life.life--;
             }
-
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
