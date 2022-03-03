@@ -21,6 +21,7 @@ public class MissileMove : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(transform.gameObject);
+        if(collision.gameObject.tag=="Eagle")
+        Destroy(gameObject);
     }
 }
